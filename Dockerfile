@@ -2,7 +2,7 @@
 FROM node:18
 
 # Establece el directorio de trabajo
-WORKDIR /usr/src/app
+WORKDIR /
 
 # Copia los archivos del proyecto
 COPY . .
