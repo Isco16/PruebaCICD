@@ -1,0 +1,149 @@
+Lanzada por el usuario admin
+Obtained Jenkinsfile from git https://github.com/Isco16/PruebaCICD.git/
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins  in C:\Users\Isco\AppData\Local\Jenkins\.jenkins\workspace\pruebaCICD
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Checkout SCM)
+[Pipeline] checkout
+The recommended git tool is: NONE
+No credentials specified
+Cloning the remote Git repository
+Cloning repository https://github.com/Isco16/PruebaCICD.git/
+ > git.exe init C:\Users\Isco\AppData\Local\Jenkins\.jenkins\workspace\pruebaCICD # timeout=10
+Fetching upstream changes from https://github.com/Isco16/PruebaCICD.git/
+ > git.exe --version # timeout=10
+ > git --version # 'git version 2.46.2.windows.1'
+ > git.exe fetch --tags --force --progress -- https://github.com/Isco16/PruebaCICD.git/ +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git.exe config remote.origin.url https://github.com/Isco16/PruebaCICD.git/ # timeout=10
+ > git.exe config --add remote.origin.fetch +refs/heads/*:refs/remotes/origin/* # timeout=10
+Avoid second fetch
+ > git.exe rev-parse "refs/remotes/origin/main^{commit}" # timeout=10
+Checking out Revision fe5d76f1c10a1b049d3dffbb7627fc95aa5bab8c (refs/remotes/origin/main)
+ > git.exe config core.sparsecheckout # timeout=10
+ > git.exe checkout -f fe5d76f1c10a1b049d3dffbb7627fc95aa5bab8c # timeout=10
+Commit message: "Archivo Jenkinsfile aniadido."
+First time build. Skipping changelog.
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Instalar dependencias)
+[Pipeline] bat
+
+C:\Users\Isco\AppData\Local\Jenkins\.jenkins\workspace\pruebaCICD>npm install 
+npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
+npm warn deprecated superagent@8.1.2: Please upgrade to v9.0.0+ as we have fixed a public vulnerability with formidable dependency. Note that v9.0.0+ requires Node.js v14.18.0+. See https://github.com/ladjs/superagent/pull/1800 for insight. This project is supported and maintained by the team at Forward Email @ https://forwardemail.net
+
+added 355 packages, and audited 356 packages in 3s
+
+48 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Test y cobertura)
+[Pipeline] bat
+
+C:\Users\Isco\AppData\Local\Jenkins\.jenkins\workspace\pruebaCICD>npm test -- --coverage 
+
+> ci_pipeline_project@1.0.0 test
+> jest --coverage
+
+PASS tests/app.test.js
+  API Tests
+    √ should return a list of users (45 ms)
+    √ should return a single user (4 ms)
+
+----------|---------|----------|---------|---------|-------------------
+File      | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+----------|---------|----------|---------|---------|-------------------
+All files |    92.3 |       50 |     100 |   91.66 |                   
+ app.js   |    92.3 |       50 |     100 |   91.66 | 17                
+----------|---------|----------|---------|---------|-------------------
+Test Suites: 1 passed, 1 total
+Tests:       2 passed, 2 total
+Snapshots:   0 total
+Time:        4.9 s
+Ran all test suites.
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Docker Build & Run)
+[Pipeline] bat
+
+C:\Users\Isco\AppData\Local\Jenkins\.jenkins\workspace\pruebaCICD>docker build -t js-app . 
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 338B 0.0s done
+#1 DONE 0.1s
+
+#2 [internal] load metadata for docker.io/library/node:18
+#2 ...
+
+#3 [auth] library/node:pull token for registry-1.docker.io
+#3 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/node:18
+#2 DONE 1.5s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.1s
+
+#5 [1/4] FROM docker.io/library/node:18@sha256:3c56248510700ddb4861bd478ea2ced828793fd5388a21adc5270cdbbf7b7919
+#5 DONE 0.0s
+
+#6 [internal] load build context
+#6 transferring context: 14.66MB 5.0s
+#6 transferring context: 20.61MB 10.0s
+#6 transferring context: 26.51MB 12.3s done
+#6 DONE 12.4s
+
+#5 [1/4] FROM docker.io/library/node:18@sha256:3c56248510700ddb4861bd478ea2ced828793fd5388a21adc5270cdbbf7b7919
+#5 CACHED
+
+#7 [2/4] COPY . .
+#7 DONE 2.3s
+
+#8 [3/4] RUN npm install
+#8 2.693 
+#8 2.693 up to date, audited 356 packages in 2s
+#8 2.693 
+#8 2.693 48 packages are looking for funding
+#8 2.693   run `npm fund` for details
+#8 2.695 
+#8 2.695 found 0 vulnerabilities
+#8 2.697 npm notice
+#8 2.697 npm notice New major version of npm available! 10.8.2 -> 11.2.0
+#8 2.697 npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.2.0
+#8 2.697 npm notice To update run: npm install -g npm@11.2.0
+#8 2.697 npm notice
+#8 DONE 2.8s
+
+#9 exporting to image
+#9 exporting layers
+#9 exporting layers 0.6s done
+#9 writing image sha256:10aba6d86ab8cf29a571ea1e29d53cde45c56a2f441caa4e1d6e4296a599105e 0.0s done
+#9 naming to docker.io/library/js-app 0.0s done
+#9 DONE 0.7s
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/nqc5s5bxa8tmvsh9wyou3d2f1
+[Pipeline] bat
+
+C:\Users\Isco\AppData\Local\Jenkins\.jenkins\workspace\pruebaCICD>docker run -d -p 8083:3000 js-app 
+66331ff515d78278be9273044345f3ae85c79c351bfddef6a657357f6762b181
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS
