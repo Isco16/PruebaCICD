@@ -4,6 +4,12 @@
 
 ![alt text](assets/images/image.png)
 
+- Verificar correcto funcionamiento de app con "Postman" o "Thunder Client".
+
+![alt text](assets/images/image-26.png)
+![alt text](assets/images/image-27.png)
+![alt text](assets/images/image-28.png)
+
 - Git init
 
 ![alt text](assets/images/image-1.png)
