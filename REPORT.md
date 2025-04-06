@@ -67,6 +67,10 @@
  ![alt text](assets/images/image-16.png)
  ![alt text](assets/images/image-17.png)
 
+- Configuración de dependencias package.json para el pipeline de test y despliegue automatizado.
+
+![alt text](assets/images/image-31.png)
+
 - Creación de pipeline de integración continua para el proyecto en Jenkins.
  
  ![alt text](assets/images/image-18.png)
@@ -80,6 +84,12 @@
  ![alt text](assets/images/image-23.png)
  ![alt text](assets/images/image-24.png)
  ![alt text](assets/images/image-25.png)
+
+- Verificar si app esta corriendo desde container
+
+![alt text](assets/images/image-32.png)
+![alt text](assets/images/image-29.png)
+![alt text](assets/images/image-30.png)
 
  # Resultados del pipeline
 
