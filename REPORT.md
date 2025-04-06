@@ -83,5 +83,5 @@
 
  # Resultados del pipeline
 
- - [Link reporte pdf](assets/reports/Reporte_4.pdf)
- - [Link reporte txt](assets/reports/#4.txt)
+ - [Link reporte pdf](assets/reports/Reporte_9.pdf)
+ - [Link reporte txt](assets/reports/#9.txt)
