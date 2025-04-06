@@ -13,5 +13,5 @@ RUN npm install
 # Expone el puerto 3000
 EXPOSE 3000
 
-# Comando para ejecutar la aplicaci贸n
+# Comando para ejecutar la aplicacion
 CMD ["npm", "start"]
